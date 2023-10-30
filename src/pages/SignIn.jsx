@@ -6,9 +6,12 @@ import {
   signInFailure,
   signInSuccess,
 } from "../redux/user/userSlice.js";
+import OAuth from "../components/OAuth.jsx";
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);
+  const { loading, error } =
+    useSelector((state) => state.someReducer?.loading) || false;
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -66,6 +69,7 @@ export default function SignIn() {
         rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
           {loading ? "Loading..." : "Sign In"}
         </button>
+        <OAuth />
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Dont Have an account?</p>
